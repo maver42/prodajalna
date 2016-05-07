@@ -244,8 +244,8 @@ streznik.post('/stranka', function(zahteva, odgovor) {
 
 // Odjava stranke
 streznik.post('/odjava', function(zahteva, odgovor) {
-  zahteva.session.prijavljena_stranka = null;
-  zahteva.session.destroy();
+    zahteva.session.prijavljena_stranka = null;
+    zahteva.session.destroy();
     odgovor.redirect('/prijava') 
 })
 
