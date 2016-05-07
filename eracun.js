@@ -201,7 +201,7 @@ streznik.post('/prijava', function(zahteva, odgovor) {
   
   form.parse(zahteva, function (napaka1, polja, datoteke) {
     var napaka2 = false;
-    var sporocilo_uspesnost;
+    var sporocilo_uspesnost = "";
     try {
       var stmt = pb.prepare("\
         INSERT INTO Customer \
@@ -216,15 +216,13 @@ streznik.post('/prijava', function(zahteva, odgovor) {
       
     } catch (err) {
       napaka2 = true;
-    }
-    
-    if(napaka2){
       sporocilo_uspesnost = "Prišlo je do napake pri registraciji nove stranke. Prosim preverite vnešene podatke in poskusite znova."
     }
     
+   
     vrniStranke(function(napaka1, stranke) {
       vrniRacune(function(napaka2, racuni) {
-        odgovor.render('prijava', {sporocilo: sporocilo_uspesnost, seznamStrank: stranke, seznamRacunov: racuni});
+          odgovor.render('prijava', {sporocilo: sporocilo_uspesnost, seznamStrank: stranke, seznamRacunov: racuni});
       })
     });
   
