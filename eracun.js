@@ -228,7 +228,6 @@ streznik.post('/prijava', function(zahteva, odgovor) {
       })
     });
   
-    odgovor.end();
   });
 })
 
